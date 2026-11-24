@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f9f6ee">
+  <meta name="description" content="동네 주민이 함께 만드는 겨울간식 지도">
+  <title>겨울한입 · 동네 겨울간식 지도</title>
+  <link rel="icon" href="./app/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./app/style.css">
+  <script type="module" src="./app/main.mjs"></script>
+</head>
+<body class="photo-snacks">
+  <a href="#main" class="skip">지도 바로 가기</a>
+  <header class="top">
+    <div class="top-inner wrap">
+      <a class="brand" href="./map.html"><img src="./app/icon.svg" alt="" width="40" height="40"><span>겨울한입</span></a>
+      <nav aria-label="서비스 메뉴"><button id="admin" class="plain" type="button" hidden>신고 관리</button><a id="signin" class="login" href="/signin-with-chatgpt?return_to=%2Fmap.html" target="_top">로그인</a><button class="button primary" data-action="start">＋ <span>판매처 제보</span></button></nav>
+    </div>
+  </header>
+  <main id="main" class="wrap">
+    <section class="intro" aria-labelledby="title">
+      <div class="eyebrow"><span aria-hidden="true">❄</span> 동네 겨울간식 지도</div>
+      <h1 id="title">우리 동네,<br class="narrow"> <em>겨울 한입.</em></h1>
+      <p>집에 가는 길, 따끈한 겨울간식을 찾아보세요.</p>
+      <div class="intro-art" aria-hidden="true"><span>✦</span><img src="./app/icon.svg" alt="" width="88" height="88"><span>✧</span><i>✦</i></div>
+    </section>
+    <section aria-label="겨울간식 찾기">
+      <div class="toolbar">
+        <div id="categories" class="categories" role="group" aria-label="간식 종류"></div>
+        <label class="toggle"><input id="today" type="checkbox"><span class="switch" aria-hidden="true"></span>오늘 판매 확인</label>
+      </div>
+      <div class="explorer">
+        <section class="map-frame" aria-label="망원동 겨울간식 지도">
+          <div id="map" class="map" tabindex="0" aria-label="지도. 방향키로 이동합니다."><div class="tiles" aria-hidden="true"></div><div class="pins"></div></div>
+          <div class="map-label"><span aria-hidden="true">⌖</span> 서울 마포구 망원동</div>
+          <div class="map-controls" aria-label="지도 조작">
+            <div class="zoom"><button type="button" id="zoom-in" aria-label="지도 확대">＋</button><button type="button" id="zoom-out" aria-label="지도 축소">−</button></div>
+            <button type="button" id="locate" class="locate" aria-label="내 위치 사용" title="내 위치"><span aria-hidden="true">◎</span></button>
+          </div>
+          <div id="pick-help" class="pick-help" hidden><p>지도를 눌러 판매처 위치를 찍어 주세요.</p><button type="button" id="pick-center">지도 중심에 핀 찍기</button><button type="button" id="cancel-pick">취소</button></div>
+          <a class="attribution" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a>
+        </section>
+        <aside class="places" aria-labelledby="places-title">
+          <div class="places-head">
+            <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="간식이나 판매처를 검색해 보세요" aria-label="간식이나 판매처 검색"></label>
+            <div class="places-title"><h2 id="places-title">가까운 판매처</h2><span id="count" aria-live="polite"></span><small id="origin">망원동 중심 기준</small></div>
+            <p id="example-note" class="example-note" hidden>예시 지도예요. 실제 판매처를 알고 있다면 제보해 주세요.</p>
+            <p id="map-error" class="error" role="status" hidden></p>
+          </div>
+          <div id="list" class="list" aria-busy="true"></div>
+        </aside>
+      </div>
+    </section>
+    <footer><span>겨울한입</span><span>동네 주민이 함께 만드는 겨울간식 지도</span></footer>
+  </main>
+  <dialog id="panel" aria-labelledby="panel-title"><div class="panel-shell"><button id="close-panel" class="close" type="button" aria-label="닫기">×</button><div id="panel-body"></div></div></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>
